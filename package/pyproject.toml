@@ -1,0 +1,21 @@
+[build-system]
+requires=["hatchling"]
+build-backend="hatchling.build"
+[project]
+name="discursive-memory-mcp"
+version="1.0.0"
+description="Robust repository-local discursive memory MCP"
+readme="README.md"
+requires-python=">=3.10"
+license={text="MIT"}
+dependencies=["mcp>=2.2,<3","python-frontmatter>=1.1,<2","PyYAML>=6,<7"]
+[project.optional-dependencies]
+semantic=["fastembed>=0.7,<0.8","lancedb>=0.39,<0.41"]
+dev=["pytest>=8,<9","build>=1.2,<2"]
+[project.scripts]
+discursive-memory="discursive_memory.cli:main"
+discursive-memory-mcp="discursive_memory.server:main"
+[tool.hatch.build.targets.wheel]
+packages=["src/discursive_memory"]
+[tool.hatch.build.targets.wheel.force-include]
+"src/discursive_memory/schema.sql"="discursive_memory/schema.sql"
